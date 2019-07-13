@@ -1,0 +1,4 @@
+#!/bin/bash
+
+flutter pub global run peanut
+git push origin gh-pages
