@@ -28,23 +28,10 @@ class MyWebsite extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-                width: 200.0,
-                height: 200.0,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: new NetworkImage(
-                          "https://images.unsplash.com/photo-1520638023360-6def43369781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                        )))),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                'Teting Flutter for Web',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-            ),
+            container(),
+            paddingRenderer(myFirstText),
+            paddingRenderer(mySecondText),
+            paddingRenderer(myThirdText),
           ],
         ),
       ),
@@ -52,6 +39,46 @@ class MyWebsite extends StatelessWidget {
   }
 }
 
+Container container() {
+  return Container(
+      width: 200.0,
+      height: 200.0,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(
+                "https://images.unsplash.com/photo-1520638023360-6def43369781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+              ))));
+}
+
+Padding paddingRenderer(Function textRenderer) {
+  return Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: textRenderer(),
+  );
+}
+
+Text myFirstText() {
+  return Text(
+    'Testing Flutter for Web',
+    style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+  );
+}
+
+Text mySecondText() {
+  return Text(
+    'Let\'s remove some indentation levels',
+    style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+  );
+}
+
+Text myThirdText() {
+  return Text(
+    'Code re-use if fun!',
+    style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+  );
+}
 /*
   Below is what was auto gen'd by running:
   `stagehand fluter-web-preview`
