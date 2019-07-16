@@ -28,7 +28,8 @@ class MyWebsite extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            container(),
+            paddingRenderer(imageContainer),
+            paddingRenderer(exampleThingcontainer),
             paddingRenderer(myFirstText),
             paddingRenderer(mySecondText),
             paddingRenderer(myThirdText),
@@ -39,17 +40,87 @@ class MyWebsite extends StatelessWidget {
   }
 }
 
-Container container() {
+Container imageContainer() {
+  String url =
+      "https://images.unsplash.com/photo-1520638023360-6def43369781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60";
   return Container(
-      width: 200.0,
-      height: 200.0,
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(
-                "https://images.unsplash.com/photo-1520638023360-6def43369781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-              ))));
+      width: 200.0, height: 200.0, decoration: decorationReturnerThing(url));
+}
+
+BoxDecoration decorationReturnerThing(url) {
+  return BoxDecoration(
+      shape: BoxShape.circle,
+      image: DecorationImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(
+            url,
+          )));
+}
+
+Container decorationContainerizer(String url) {
+  return Container(
+    width: 200.0,
+    height: 200.0,
+    decoration: decorationReturnerThing(url),
+  );
+}
+
+Container exampleThingcontainer() {
+  return Container(
+    color: Colors.white30,
+    width: 200.0,
+    height: 200.0,
+    child: GridView.count(
+        crossAxisCount: 4,
+        childAspectRatio: 1.0,
+        padding: const EdgeInsets.all(4.0),
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+        children: <String>[
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+          'https://placekitten.com/200/200',
+          'https://placebear.com/200/200',
+        ].map((String url) {
+          //return GridTile(child: Image.network(src, fit: BoxFit.cover, scale: 1.0, repeat: ImageRepeat.noRepeat));
+          return GridTile(child: decorationContainerizer(url));
+        }).toList()),
+  );
 }
 
 Padding paddingRenderer(Function textRenderer) {
@@ -75,7 +146,7 @@ Text mySecondText() {
 
 Text myThirdText() {
   return Text(
-    'Code re-use if fun!',
+    'Code re-use is fun!',
     style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
   );
 }
